@@ -1,6 +1,7 @@
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
+
 [project]
 name = "overlapping-graph-clustering"
 version = "1.0.0"
@@ -9,16 +10,18 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [{name = "Rohi Tariq"}]
-dependencies = ["networkx>=3,<4", "matplotlib>=3.8,<4"]
-keywords = ["graph clustering", "relative density", "overlapping clustering", "MRDDC", "network science"]
+dependencies = ["networkx>=3,<4"]
+keywords = ["graph clustering", "relative density", "overlapping clustering", "network science"]
+
 [project.urls]
-Repository = "https://github.com/Rohi-Tariq-AI/user-specified-density-graph-clustering"
-Publication = "https://doi.org/10.1109/ACCESS.2023.3329429"
+Repository = "https://github.com/Rohi-Tariq-AI/overlapping-density-graph-clustering"
+
 [project.scripts]
-graph-cluster = "graph_clustering.cli:main"
 overlap-cluster = "graph_clustering.overlap_cli:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]

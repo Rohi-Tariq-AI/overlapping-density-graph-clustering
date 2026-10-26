@@ -1,94 +1,103 @@
-# User-Specified-Density Graph Clustering
+# Overlapping Graph Clustering with User-Specified Density
 
-Version **1.1.0** is a release-ready Python implementation of triangle-based partitioning graph clustering for simple, undirected, unweighted graphs. Users select one or more **target densities**, and the software returns disjoint clusters, quality metrics, structured outputs, optional traces, locked-result verification, and optional PNG visualizations.
+A triangle-seeded graph clustering implementation that returns overlapping clusters near a user-specified relative density.
 
-> **Algorithm-preservation statement:** Version 1.1.0 does not modify triangle discovery, triangle ordering, candidate selection, cluster initialization, expansion, stopping conditions, node assignment, edge accounting, relative-density calculations, cluster order, quality formulas, unclustered-node calculation, or locked regression signatures. Visualization runs only after clustering finishes.
+## Method
 
-## Key features
+For the same graph, node order, triangle order, target density, and tie-breaking rules, the first cluster is identical to the partitioning method.
 
-- One or multiple GML datasets
-- One or multiple target densities
-- Compatible locked backend and optimized backend
-- CSV, JSON, text summary, optional trace, and combined reports
-- **Mean Relative Density Deviation Coefficient (MRDDC)**
-- Average relative density and recorded-edge coverage
-- Deterministic, headless cluster visualization
-- Locked-reference verification and automated regression tests
+For every later cluster:
+
+1. The starting triangle contains no node from any earlier accepted cluster.
+2. The starting triangle is selected by the average adjusted triangle-degree rule.
+3. After initialization, expansion uses the complete graph.
+4. Nodes from earlier clusters may enter during expansion, creating overlap.
+
+Relative density is
+
+```text
+internal edges / (internal edges + external edges)
+```
+
+Conductance is not used.
 
 ## Installation
 
 ```bash
-python -m venv .venv
-```
-
-Linux/macOS:
-
-```bash
-source .venv/bin/activate
-python -m pip install --upgrade pip
+git clone https://github.com/Rohi-Tariq-AI/overlapping-density-graph-clustering.git
+cd overlapping-density-graph-clustering
 python -m pip install -e .
 ```
 
-Windows PowerShell:
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -e .
-```
-
-## Five-minute quick start
+## Command-line use
 
 ```bash
-graph-cluster --graphs data_gml/dolphins.gml --densities 0.50 --visualize
+overlap-cluster \
+  data_gml/karate.gml \
+  --density 0.40 \
+  --mode corrected \
+  --output results/karate_040
 ```
 
-Multiple densities:
-
-```bash
-graph-cluster --graphs data_gml/dolphins.gml --densities 0.25 0.40 0.50 0.70 0.90 --visualize
-```
-
-Multiple datasets:
-
-```bash
-graph-cluster --graphs data_gml/dolphins.gml data_gml/karate.gml --densities 0.40 0.60 --visualize
-```
-
-## Expected output
+The command creates:
 
 ```text
-results/dolphins/density_050/
-├── clusters.csv
-├── results.json
-├── summary.txt
-├── trace.txt                  # only with --trace
-└── cluster_visualization.png  # only with --visualize
+results.json
+clusters.csv
+summary.txt
 ```
 
-## Quality metrics
+The summary includes total nodes and edges, triangle count, number of clusters, clustered node count, overlapping node count, unclustered node count, average relative density, MRDDC, and edge-coverage measures.
 
-- **Relative density:** density achieved by one discovered cluster.
-- **Average relative density:** mean relative density of all discovered clusters.
-- **Mean Relative Density Deviation Coefficient (MRDDC):** agreement between target density and cluster relative densities. Values near 1.00 indicate close agreement.
-- **Recorded-edge coverage:** proportion of graph edges recorded as internal cluster edges. It is not induced-subgraph coverage.
+## Python API
+
+```python
+import networkx as nx
+from graph_clustering import OverlappingCliqueClusterer
+
+graph = nx.read_gml("data_gml/karate.gml", label="id")
+graph = nx.Graph(graph)
+graph.remove_edges_from(nx.selfloop_edges(graph))
+
+result = OverlappingCliqueClusterer(
+    target_density=0.40,
+    mode="corrected",
+).fit(graph)
+
+for number, cluster in enumerate(result.clusters, start=1):
+    print(number, cluster.starting_triangle, cluster.nodes, cluster.relative_density)
+
+print("Overlapping nodes:", result.overlapping_nodes)
+print("Unclustered nodes:", result.unclustered_nodes)
+```
+
+## Included datasets
+
+- Karate Club
+- Dolphins
+- American college football
+- Political books
+- Les Miserables
+- Power Grid
+- Facebook
+- Weaver bird social network
 
 ## Tests
 
 ```bash
-python -m pytest
+python -m pytest -q
 ```
 
-See [USER_GUIDE.md](USER_GUIDE.md) for full installation, dataset preparation, CLI, outputs, metrics, troubleshooting, reproducibility, and release guidance.
+## Repository structure
 
-## Citation and attribution
+```text
+src/graph_clustering/   implementation
+tests/                  automated tests
+examples/               runnable example
+data_gml/               GML datasets
+data_edge_lists/        edge-list datasets
+```
 
-Use the scholarly citation in [CITATION.md](CITATION.md) and preserve [ATTRIBUTION.md](ATTRIBUTION.md).
+## Citation and license
 
-## License
-
-Distributed under the project-specific license included in `LICENSE`. Redistribution and derivative works must preserve the required attribution and scholarly citation. This is not the MIT License.
-
-## Release
-
-Current version: **1.1.0**. See [CHANGELOG.md](CHANGELOG.md).
+See `CITATION.md`, `ATTRIBUTION.md`, and `LICENSE`.
