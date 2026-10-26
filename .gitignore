@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Editors and operating system
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local generated experiments
+local_checks/
+overlapping_results/
+
+# Temporary files
+*.tmp
+*.log
+
+# Detailed runtime benchmark assets kept in a separate repository
+validation/runtime_comparison.png
+validation/runtime_comparison_all_8_datasets.csv
+validation/runtime_comparison_all_8_datasets.json
+validation/runtime_summary.json
+validation/benchmark_*.json

@@ -1,0 +1,224 @@
+[
+  {
+    "dataset": "polbooks",
+    "mode": "compatible",
+    "target_density": 0.4,
+    "nodes": 105,
+    "edges": 441,
+    "triangles": 560,
+    "clusters": 10,
+    "overlapping_nodes": 45,
+    "unclustered_nodes": 21,
+    "average_relative_density": 0.4,
+    "mrddc": 1.0,
+    "unique_edge_coverage": 0.7007,
+    "membership_weighted_edge_coverage": 1.4195,
+    "first_cluster_equal": true,
+    "disjoint_starts": true,
+    "runtime_seconds": 0.80631,
+    "starting_triangles": [
+      [
+        3,
+        20,
+        24
+      ],
+      [
+        7,
+        30,
+        58
+      ],
+      [
+        4,
+        5,
+        6
+      ],
+      [
+        35,
+        38,
+        39
+      ],
+      [
+        13,
+        42,
+        43
+      ],
+      [
+        60,
+        62,
+        99
+      ],
+      [
+        51,
+        65,
+        69
+      ],
+      [
+        94,
+        95,
+        102
+      ],
+      [
+        48,
+        49,
+        57
+      ],
+      [
+        67,
+        103,
+        104
+      ]
+    ],
+    "relative_densities": [
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4,
+      0.4
+    ]
+  },
+  {
+    "dataset": "polbooks",
+    "mode": "compatible",
+    "target_density": 0.5,
+    "nodes": 105,
+    "edges": 441,
+    "triangles": 560,
+    "clusters": 8,
+    "overlapping_nodes": 46,
+    "unclustered_nodes": 23,
+    "average_relative_density": 0.5,
+    "mrddc": 1.0,
+    "unique_edge_coverage": 0.712,
+    "membership_weighted_edge_coverage": 1.4444,
+    "first_cluster_equal": true,
+    "disjoint_starts": true,
+    "runtime_seconds": 1.601073,
+    "starting_triangles": [
+      [
+        3,
+        20,
+        24
+      ],
+      [
+        7,
+        30,
+        58
+      ],
+      [
+        34,
+        38,
+        39
+      ],
+      [
+        51,
+        52,
+        64
+      ],
+      [
+        0,
+        1,
+        6
+      ],
+      [
+        93,
+        94,
+        102
+      ],
+      [
+        59,
+        62,
+        63
+      ],
+      [
+        13,
+        42,
+        43
+      ]
+    ],
+    "relative_densities": [
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.5,
+      0.49
+    ]
+  },
+  {
+    "dataset": "polbooks",
+    "mode": "compatible",
+    "target_density": 0.6,
+    "nodes": 105,
+    "edges": 441,
+    "triangles": 560,
+    "clusters": 8,
+    "overlapping_nodes": 63,
+    "unclustered_nodes": 13,
+    "average_relative_density": 0.6,
+    "mrddc": 1.0,
+    "unique_edge_coverage": 0.8299,
+    "membership_weighted_edge_coverage": 2.0952,
+    "first_cluster_equal": true,
+    "disjoint_starts": true,
+    "runtime_seconds": 2.06044,
+    "starting_triangles": [
+      [
+        3,
+        20,
+        24
+      ],
+      [
+        7,
+        30,
+        58
+      ],
+      [
+        34,
+        38,
+        39
+      ],
+      [
+        51,
+        52,
+        64
+      ],
+      [
+        0,
+        1,
+        6
+      ],
+      [
+        59,
+        62,
+        63
+      ],
+      [
+        94,
+        95,
+        102
+      ],
+      [
+        67,
+        103,
+        104
+      ]
+    ],
+    "relative_densities": [
+      0.59,
+      0.6,
+      0.6,
+      0.6,
+      0.6,
+      0.6,
+      0.6,
+      0.6
+    ]
+  }
+]
